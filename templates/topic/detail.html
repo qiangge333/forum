@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ topic.title }}
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div class="gua-block gua-activity">
+            <img class="gua-avatar" src="{{ topic.user.img }}">
+            <div class="gua-title">{{ topic.title }}</div>
+            <div>
+                <a href="{{ url_for('user.user_profile', id=topic.user.id) }}">
+                    {{ topic.user.username }}
+                </a>
+                更新于@ {{ topic.updated_time }}
+            </div>
+            <div class="markdown-body">{{ topic.content }}</div>
+        </div>
+        <a class="gua-full pure-button pure-button-primary" href="{{ url_for('topic.edit', id=topic.id) }}">
+            修改帖子
+        </a>
+        <div class="gua-block">
+            <form action="{{ url_for('topic.comments') }}" method="post">
+            <textarea name="content" class="gua-full gua-content" placeholder="输入回复内容" required></textarea>
+            <br>
+            <input name="topic_id" hidden value="{{ topic.id }}">
+            <button id="id-button-submit" class="pure-button pure-button-primary gua-full">我要回复</button>
+            </form>
+        </div>
+        <div id="id-block-comment">
+            {% for c in comments %}
+            <div class="gua-block gua-comment gua-activity">
+                <img class="gua-avatar" src="{{ c.user.img }}">
+                <div>
+                    <a href="{{ url_for('user.user_profile', id=c.user_id) }}">
+                        {{ c.user.username }}
+                    </a>
+                    更新于：
+                    {{ c.created_time }}
+                </div>
+                <div class="markdown-body">{{ c.content }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

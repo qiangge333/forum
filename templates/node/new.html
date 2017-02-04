@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new board</title>
+</head>
+<body>
+    <form action="{{ url_for('node.add') }}" method="post">
+        <input name="name">
+        <br>
+        <input name="keywords">
+        <br>
+        <button>新建板块</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ user.username }}的主页
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div class="gua-block">
+            <img class="gua-avatar" src="{{ user.img }}">
+            <div>
+            <form class="pure-form" action="/uploads/add" method="post" enctype="multipart/form-data">
+                选择头像：
+                <input type="file" name="uploaded" accept="image/*"/>
+                <input type="submit" value="上传"/>
+            </form>
+            </div>
+            <div>用户名：{{ user.username }}</div>
+            <div>发帖： {{ lt }}</div>
+            <div>回帖： {{ lc }}</div>
+            <div>
+            <a href="{{ url_for('question.user_index', id=user.id) }}">提问列表： {{ lq }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

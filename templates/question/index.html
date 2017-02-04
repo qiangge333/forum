@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    所有提问
+{% endblock %}
+
+{% block top %}
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+    <div class="gua-block">
+        <a id="id-button-toggle-update" class="gua-full pure-button pure-button-primary"
+                href="{{ url_for('question.new') }}">我要提问</a>
+    </div>
+    {% for q in questions %}
+        <div class="gua-block gua-activity">
+            <img class="gua-avatar" src="{{ q.user.img }}">
+            <div class="gua-title">
+                <a class="gua-topic-link" href="{{ url_for('question.detail', id=q.id) }}">
+                    <div class="gua-topic-title">
+                        {{ q.title }}
+                    </div>
+                    <div class="gua-topic-time">
+                        <a href="{{ url_for('user.user_profile', id=q.user_id) }}">{{ q.user.username }}</a>
+                        更新于: {{ q.created_time }}
+                    </div>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ question.title }}
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div class="gua-block gua-activity">
+            <img class="gua-avatar" src="{{ question.user.img }}">
+            <div class="gua-title">
+                {{ question.title }}
+            </div>
+            <div>
+                <a href="{{ url_for('user.user_profile', id=question.user.id) }}">{{ question.user.username }}</a>
+                更新于@ {{ question.updated_time }}
+            </div>
+            <div>
+                <table class="pure-table pure-table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="pure-table-odd">需要完成的需求以及目的</td>
+                        <td class="markdown-body">{{ question.expectation }}</td>
+                    </tr>
+                    <tr>
+                        <td class="pure-table-odd">想法或思路</td>
+                        <td class="markdown-body">{{ question.thinking }}</td>
+                    </tr>
+                       <tr>
+                        <td class="pure-table-odd">具体的实现过程</td>
+                        <td class="markdown-body">{{ question.procedure }}</td>
+                    </tr>
+                    <tr>
+                        <td class="pure-table-odd">遇到的问题</td>
+                        <td class="markdown-body">{{ question.problems }}</td>
+                    </tr>
+                    <tr>
+                        <td class="pure-table-odd">实现代码</td>
+                        <td class="markdown-body">{{ question.code }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a id="id-button-update" class="pure-button pure-button-primary gua-full"
+                href="{{ url_for('question.edit', id=question.id) }}">修改提问</a>
+        <br>
+        <form action="{{ url_for('question.answer') }}" method="post">
+            <textarea name="content" class="gua-full gua-content" placeholder="输入回答内容" required></textarea>
+            <input name="question_id" hidden value="{{ question.id }}">
+            <button id="id-button-submit" class="pure-button pure-button-primary gua-full">回答</button>
+        </form>
+        <div id="id-block-answer">
+            {% for a in answers %}
+            <div class="gua-block gua-answer gua-activity">
+                <img class="gua-avatar" src="{{ a.user.img }}">
+                <div>
+                    <a href="{{ url_for('user.user_profile', id=a.user_id) }}">
+                        {{ a.user.username }}
+                    </a>
+                    更新于：
+                    {{ a.created_time }}
+                </div>
+                <div class="markdown-body">
+                    {{ a.content }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

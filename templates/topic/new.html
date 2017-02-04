@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    发帖
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div id='id-form-topic'>
+            <form action="{{ url_for('topic.add') }}" method="post">
+                <input name="title" class="gua-full gua-content pure-input-1" type="text" placeholder="输入标题" required/>
+                <br>
+                <textarea name="content" class="gua-full gua-content" placeholder="输入正文" required></textarea>
+                <br>
+                <textarea name="board_id" class="gua-content" hidden>{{ id }}</textarea>
+                <button id="id-button-submit" class="pure-button pure-button-primary gua-full">发帖</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    我的提问
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        {% for q in questions %}
+            <div class="gua-block gua-activity">
+                <img class="gua-avatar" src="{{ q.user.img }}">
+                <div class="gua-title">
+                    <a href="{{ url_for('question.detail', id=q.id) }}">{{ q.title }}</a>
+                </div>
+                <div>
+                    {{ q.user.username }} 更新于: {{ q.created_time }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

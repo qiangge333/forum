@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    修改
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div id='id-form-topic'>
+            <form action="{{ url_for('topic.update', id=topic.id) }}" method="post">
+                <input name="title" class="gua-full gua-content pure-input-1" type="text"
+                       value="{{ topic.title }}" placeholder="输入标题" required/>
+                <textarea name="content" class="gua-full gua-content" placeholder="输入正文" required>{{ topic.content }}</textarea>
+                <button id="id-button-submit" class="pure-button pure-button-primary gua-full">修改</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

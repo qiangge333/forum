@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ node.name }}
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+        <div class="gua-block">
+            <a id="id-button-toggle-update" class="gua-full pure-button pure-button-primary"
+                    href="{{ url_for('topic.new', id=node.id) }}">我要发帖</a>
+        </div>
+        {% for t in topics %}
+            <div class="gua-block gua-activity">
+                <img class="gua-avatar" src="{{ t.user.img }}">
+                <div class="gua-title">
+                    <a class="gua-topic-link"href="{{ url_for('topic.detail', id=t.id) }}">
+                        <div class="gua-topic-title">{{ t.title }}</div>
+                        <div class="gua-topic-time">
+                        <a href="{{ url_for('user.user_profile', id=t.user_id) }}">{{ t.user.username }}</a>
+                        更新于: {{ t.created_time }}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

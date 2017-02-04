@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    问题
+{% endblock %}
+
+{% block content %}
+<div class="pure-g gua-main">
+    <div class="pure-u-3-4 gua-center">
+    <div class="gua-block">
+    <form action="{{ url_for('question.add') }}" method="post">
+        <input name="title" class="gua-full gua-content" placeholder="标题">
+        <br>
+        <textarea class="gua-full gua-content" required
+                  name="expectation" placeholder="描述你需要完成的需求以及目的（目的就是为什么要做这个需求）"></textarea>
+        <br>
+        <textarea class="gua-full gua-content" required
+                  name="thinking" placeholder="描述你的想法或思路"></textarea>
+        <br>
+        <textarea class="gua-full gua-content" required
+                  name="procedure" placeholder="描述具体的实现过程"></textarea>
+        <br>
+        <textarea class="gua-full gua-content" required
+                  name="problems" placeholder="描述遇到的问题，包括正确信息，报错信息或得到的不正确的信息"></textarea>
+        <br>
+        <textarea class="gua-full gua-content"
+                  name="code" placeholder="有条件则贴出具体实现代码"></textarea>
+        <br>
+        <button id="id-button-toggle-update" class="gua-full pure-button pure-button-primary">
+            提交问题
+        </button>
+    </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

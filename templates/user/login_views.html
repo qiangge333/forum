@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/signin.css" rel="stylesheet">
+    <title>登录页面</title>
+</head>
+<body>
+<div class="container">
+    <form class="form-signin" role="form" action="{{ url_for('user.login') }}" method="post">
+        <label>请输入登录信息：</label>
+        <input name='username' class="form-control" placeholder="Username" required autofocus>
+        <input name='password' type="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+            <label>
+                <a href="{{ url_for('user.register') }}">注册</a>
+            </label>
+            <label>
+                <a class="" href="{{ url_for('question.index') }}">返回主页</a>
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    </div>
+</body>
+</html>
